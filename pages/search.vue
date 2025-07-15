@@ -2,7 +2,14 @@
 import SearchComponent from "~/components/SearchComponent.vue";
 
 const route = useRoute();
-const query = route.query.query;
+const query = ref(route.query.query?.toString() || "");
+
+watch(
+  () => route.query.query,
+  (newQuery) => {
+    query.value = newQuery?.toString() || "";
+  }
+);
 </script>
 
 <template>
